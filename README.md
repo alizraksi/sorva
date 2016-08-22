@@ -1,6 +1,7 @@
 SORVA (Significance Of Rare VAriants)
 =====================================
 SORVA is a stand-alone program for querying the SORVA database and calculating the significance of your NGS sequencing findings. 
+
 The SORVA dataset contains calculations on the number of individuals who have a rare variant in a given gene for numerous filtering threshold scenarios, which may be used for calculating the significance of an observed rare variant being causal for disease. Run SORVA to answer the question: How often do individuals carry a mutation in a given gene? You can specify the type of variant, e.g. only count an individual if they are homozygous for a loss-of-function variant, after filtering out common variants with a minor allele frequency >= 5%, by specifying options while running the script.
 
 Requirements
@@ -14,20 +15,21 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
 
 Usage
 =====
-python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD
-python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD --protdomains
+    python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD
 
-#The output of the first command becomes the -f parameter of the following command to calculate p-value:
-python statistics.py -f 0.00239616613419 --n1 10 --s1 3
+    python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD --protdomains
+
+    #The output of the first command becomes the -f parameter of the following command to calculate p-value:
+    python statistics.py -f 0.00239616613419 --n1 10 --s1 3
 
 Installation
 ============
-tar xvzf sorva-1.x.tar.gz;
-cd sorva-1.x;
+    tar xvzf sorva-1.x.tar.gz;
+    cd sorva-1.x;
 
-#for options run:
-	python sorva.py --help
-	python statistics.py --help
+    #for options run:
+    python sorva.py --help
+    python statistics.py --help
 
 
 SORVA
