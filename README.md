@@ -5,16 +5,16 @@ SORVA is a stand-alone program for querying the SORVA database and calculating t
 The SORVA dataset contains calculations on the number of individuals who have a rare variant in a given gene for numerous filtering threshold scenarios, which may be used for calculating the significance of an observed rare variant being causal for disease. Run SORVA to answer the question: How often do individuals carry a mutation in a given gene? You can specify the type of variant, e.g. only count an individual if they are homozygous for a loss-of-function variant, after filtering out common variants with a minor allele frequency >= 5%, by specifying options while running the script.
 
 ## Requirements
-============
+
 * Python. Python version 3.5.1 has been tested.
 * SciPy. Version 0.13.3 has been tested.
 
 ## Reference
-=========
+
 Aliz R Rao et al. Calculating the statistical significance of rare variants causal for Mendelian disorders
 
 ## Installation
-============
+
     tar xvzf sorva-1.x.tar.gz;
     cd sorva-1.x;
 
@@ -24,7 +24,7 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
 
 
 ## Usage
-=====
+
 ### Quick start
 
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD
@@ -35,7 +35,7 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
     python statistics.py -f 0.00239616613419 --n1 10 --s1 3
 
 ### sorva.py
-=====
+
 ```Options:
   --consequence {nonsyn,lof}, -c {nonsyn,lof}
                         Variant consequence filtering threshold. nonsyn =
@@ -69,7 +69,7 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
 ```
 
 ### statistics.py
-==========
+
 ```Options:
   -p P           background proportion of individuals in population who have a
                  mutation in the gene of interest (output of sorva.py)
@@ -101,8 +101,8 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
   --verbose, -v  output additional information on how P-value was calculated
 ```
 
-Files
-=====
+## Files
+
 ```[distribution]
 	data		[Directory contains 840 mutational burden data files]
 	COPYING.txt	[Copy of GNU General Public License v3]
