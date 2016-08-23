@@ -25,12 +25,19 @@ After extracting the downloaded zip file, navigate into the directory and for op
 
 ### Quick start
 
+Let's go through the following example:
+
+What fraction of the general ('ALL') population has a heterozygous LOF variant anywhere in the gene DMD, after filtering out all variants with MAF > 0.05 ?
+
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD
+
+How about anywhere within described protein domains in DMD?
 
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD --protdomains
 
-    #The output of the first command becomes the -f parameter of the following command to calculate p-value:
-    python statistics.py -f 0.00239616613419 --n1 10 --s1 3
+We had sequenced 10 unrelated individuals and 8 of them had heterozygous variants in DMD. How likely is this to occur by random chance? The output of the first command becomes the -f parameter of the following command to calculate our p-value:
+
+    python statistics.py -f 0.1134185303514377 --n1 10 --s1 8
 
 ### sorva.py
 
