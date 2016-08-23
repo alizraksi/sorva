@@ -35,9 +35,13 @@ How about anywhere within described protein domains in DMD?
 
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD --protdomains
 
-We had sequenced 10 unrelated individuals and 8 of them had heterozygous variants in DMD. How likely is this to occur by random chance? The output of the first command becomes the -f parameter of the following command to calculate our p-value:
+We had sequenced 10 unrelated individuals and 3 of them had heterozygous variants in DMD. How likely is this to occur by random chance? The output of the first command becomes the -f parameter of the following command to calculate our p-value:
 
-    python statistics.py -f 0.1134185303514377 --n1 10 --s1 8
+    python statistics.py -f 0.0023961661341853034 --n1 10 --s1 3
+    
+The resulting value is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
+
+    P-value = 1.63029317901e-06 * 24000 = 0.0391
 
 ### sorva.py
 
