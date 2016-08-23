@@ -15,10 +15,8 @@ Aliz R Rao et al. Calculating the statistical significance of rare variants caus
 
 ## Installation
 
-    tar xvzf sorva-1.x.tar.gz;
-    cd sorva-1.x;
+After extracting the downloaded zip file, navigate into the directory and for options, run:
 
-    #for options run:
     python sorva.py --help
     python statistics.py --help
 
