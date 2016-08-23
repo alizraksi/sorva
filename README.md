@@ -42,6 +42,7 @@ We had sequenced 10 unrelated individuals and 8 of them had heterozygous variant
 ### sorva.py
 
 ```Options:
+  -h, --help            show this help message and exit
   --consequence {nonsyn,lof}, -c {nonsyn,lof}
                         Variant consequence filtering threshold. nonsyn =
                         missense or more severe, also includes LOF. lof =
@@ -59,10 +60,13 @@ We had sequenced 10 unrelated individuals and 8 of them had heterozygous variant
                         (countvariants). The latter option will count an
                         individual multiple times if they have multiple
                         variants in the gene.
-  --zygosity {het,hom,both}, -z {het,hom,both}
+  --zygosity {het,hom,both,hom_or_compoundhet}, -z {het,hom,both,hom_or_compoundhet}
                         Zygosity of variants to include. het=heterozygous
                         variants only. hom=homozygous variants only. both=both
-                        types of variants.
+                        types of variants. hom_or_compoundhet=homozygous
+                        variants or potential compound heterozygous variants
+                        (two heterozygous variants at different loci within
+                        the gene)
   --gene GENE, -g GENE  Gene name. Use standard gene name from HGNC or specify
                         Ensembl gene ID starting with ENSG.
   --protdomains         Output protein domain info.
@@ -76,34 +80,44 @@ We had sequenced 10 unrelated individuals and 8 of them had heterozygous variant
 ### statistics.py
 
 ```Options:
-  -p P           background proportion of individuals in population who have a
-                 mutation in the gene of interest (output of sorva.py)
-  --n1 N1        number of singletons (unrelated individuals) sequenced
-  --s1 S1        number of singletons who have a mutation in the gene of
-                 interest
-  --n1_2 N1_2    number of families where individuals share 1/2 of their
-                 genome (e.g. parent-child pair or siblings)
-  --s1_2 S1_2    number of families sharing 1/2 of their genome who share
-                 mutations in the gene of interest
-  --n1_4 N1_4    number of families where individuals share 1/4 of their
-                 genome (e.g. grandparent-grandchild pair, aunt/uncle-
-                 niece/nephew pair, half siblings, two first cousins or three
-                 siblings)
-  --s1_4 S1_4    number of families sharing 1/4 of their genome who share
-                 mutations in the gene of interest
-  --n1_8 N1_8    number of families where individuals share 1/8 of their
-                 genome
-  --s1_8 S1_8    number of families sharing 1/8 of their genome who share
-                 mutations in the gene of interest
-  --n1_16 N1_16  number of families where individuals share 1/16 of their
-                 genome
-  --s1_16 S1_16  number of families sharing 1/16 of their genome who share
-                 mutations in the gene of interest
-  --n1_32 N1_32  number of families where individuals share 1/32 of their
-                 genome
-  --s1_32 S1_32  number of families sharing 1/32 of their genome who share
-                 mutations in the gene of interest
-  --verbose, -v  output additional information on how P-value was calculated
+  -h, --help           show this help message and exit
+  -f F                 background frequency / fraction of individuals in
+                       population who have a mutation in the gene of interest
+                       (output of sorva.py)
+  --n1 N1              number of singletons (unrelated individuals) sequenced
+  --s1 S1              number of singletons who have a mutation in the gene of
+                       interest
+  --n1_2 N1_2          number of families where individuals share 1/2 of their
+                       genome (e.g. parent-child pair or full siblings)
+  --s1_2 S1_2          number of families sharing 1/2 of their genome who
+                       share mutations in the gene of interest
+  --n1_4 N1_4          number of families where individuals share 1/4 of their
+                       genome (e.g. grandparent-grandchild pair, aunt/uncle-
+                       niece/nephew pair, half siblings, two first cousins or
+                       three siblings)
+  --s1_4 S1_4          number of families sharing 1/4 of their genome who
+                       share mutations in the gene of interest
+  --n1_8 N1_8          number of families where individuals share 1/8 of their
+                       genome (e.g. second cousins)
+  --s1_8 S1_8          number of families sharing 1/8 of their genome who
+                       share mutations in the gene of interest
+  --n1_16 N1_16        number of families where individuals share 1/16 of
+                       their genome (e.g. third cousins)
+  --s1_16 S1_16        number of families sharing 1/16 of their genome who
+                       share mutations in the gene of interest
+  --n1_32 N1_32        number of families where individuals share 1/32 of
+                       their genome
+  --s1_32 S1_32        number of families sharing 1/32 of their genome who
+                       share mutations in the gene of interest
+  --n_custom N_CUSTOM  number of families where individuals share a fraction
+                       of their genome that is a custom value, specified by
+                       --custom
+  --s_custom S_CUSTOM  number of families sharing user-specified fraction of
+                       their genome who share mutations in the gene of
+                       interest
+  --custom CUSTOM      fraction of genome shared by family members sequenced
+  --verbose, -v        output additional information on how P-value was
+                       calculated
 ```
 
 ## Files
