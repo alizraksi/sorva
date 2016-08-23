@@ -1,6 +1,6 @@
 SORVA (Significance Of Rare VAriants)
 =====================================
-SORVA is a stand-alone program for querying the SORVA database and calculating the significance of your NGS sequencing findings. 
+SORVA is a stand-alone program for querying the SORVA database and calculating the significance of your NGS sequencing findings. The web-based version can be found at https://sorva.genome.ucla.edu and is highly recommended for most applications. This stand-alone version is recommended for bulk queries, e.g. calculating statistics for every gene.
 
 The SORVA dataset contains calculations on the number of individuals who have a rare variant in a given gene for numerous filtering threshold scenarios, which may be used for calculating the significance of an observed rare variant being causal for disease. Run SORVA to answer the question: How often do individuals carry a mutation in a given gene? You can specify the type of variant, e.g. only count an individual if they are homozygous for a loss-of-function variant, after filtering out common variants with a minor allele frequency >= 5%, by specifying options while running the script.
 
@@ -138,4 +138,6 @@ Our results are statistically significant. This gene is highly suspicious of bei
 	sorva.py	[Python script to query data]
 	statistics.py	[Python script to calculate significance P-value]
 ```
+## Feedback
 
+If you have any questions or comments, please contact alizrrao (at) gmail . com.
