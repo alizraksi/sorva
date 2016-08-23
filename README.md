@@ -23,25 +23,29 @@ After extracting the downloaded zip file, navigate into the directory and for op
 
 ## Usage
 
-### Quick start
+### Tutorial
 
 Let's go through the following example:
 
-What fraction of the general ('ALL') population has a heterozygous LOF variant anywhere in the gene DMD, after filtering out all variants with MAF > 0.05 ?
+We had sequenced 10 unrelated individuals with a rare, Mendelian disorder and 3 of them were heterozygous for rare, loss-of-function variants in DMD. How likely is this to occur by random chance?
+
+First, we need to find out: what fraction of the general ('ALL') population has a heterozygous LOF variant anywhere in the gene DMD, after filtering out all variants with MAF > 0.05 ?
 
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD
 
-How about anywhere within described protein domains in DMD?
+Just out of curiosity, how about anywhere within described protein domains in DMD?
 
     python sorva.py --genelist ensembl75 --genomebuild hg19 -c lof -p ALL -m 0.05 -b binary -z het --gene DMD --protdomains
 
-We had sequenced 10 unrelated individuals and 3 of them had heterozygous variants in DMD. How likely is this to occur by random chance? The output of the first command becomes the -f parameter of the following command to calculate our p-value:
+To calculate our P-value, the output of the first command becomes the -f parameter of the following command:
 
     python statistics.py -f 0.0023961661341853034 --n1 10 --s1 3
     
-The resulting value is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
+The resulting number is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
 
     P-value = 1.63029317901e-06 * 24000 = 0.0391
+
+Our results are statistically significant. This gene is highly suspicious of being causal for disease and we follow up with functional studies to confirm our results.
 
 ### sorva.py
 
