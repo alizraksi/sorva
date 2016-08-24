@@ -44,7 +44,7 @@ def run(consequence, population, maf, binarity, zygosity, gene, protdomains, gen
     filepath = dir_path + '/data/' + filename
 
     if not file_exists(filepath):
-        raise SorvaError('Cannot find data file: ' + filepath + '\nPlease check that the data directory exists and contains 840 files.')
+        raise SorvaError('Cannot find data file: ' + filepath + '\nPlease check that the data directory exists and contains 841 files.')
     
     with open(filepath, 'r') as in_file:
         reader = csv.reader(in_file, delimiter='\t')
@@ -91,7 +91,7 @@ def run(consequence, population, maf, binarity, zygosity, gene, protdomains, gen
             dir_path = os.path.dirname(os.path.realpath(__file__))
             filepath = dir_path + '/data/' + filename
             if not file_exists(filepath):
-                raise SorvaError('Cannot find data file: ' + filepath + '\nPlease check that the data directory exists and contains 840 files.')
+                raise SorvaError('Cannot find data file: ' + filepath + '\nPlease check that the data directory exists and contains 841 files.')
             count = None
             with open(filepath, 'r') as in_file:
                 gene_reader = csv.reader(in_file, delimiter='\t')
