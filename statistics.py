@@ -102,7 +102,7 @@ def run(f, n1, s1, denovo, gene, consequence, n1_2, s1_2, n1_4, s1_4, n1_8, s1_8
     # Probability of having all of the above events occurring together:
     pval = pval_dn * pb1 * pb1_2 * pb1_4 * pb1_8 * pb1_16 * pb1_32 * pb_custom
 
-    if verbose == 0:
+    if verbose == None:
         print(pval)
     elif verbose >= 1:
         # Set n1 and s1 back to their original values, in case they were changed
