@@ -28,9 +28,9 @@ def run(consequence, population, maf, binarity, zygosity, gene, protdomains, gen
     binarity = 'Binary' if binarity=='binary' else 'CountVariants'
     if zygosity == 'het':
         zygosity = 'HeteroOnly'
-    elif zygosity=='hom':
-        zygosity=='HomoOnly'
-    elif zygosity=='hom_or_compoundhet':
+    elif zygosity == 'hom':
+        zygosity = 'HomoOnly'
+    elif zygosity == 'hom_or_compoundhet':
         if binarity == 'Binary':
             zygosity = 'HomOrCompoundHet'
         else:
