@@ -28,9 +28,9 @@ def run(consequence, population, maf, binarity, zygosity, gene, protdomains, gen
     binarity = 'Binary' if binarity=='binary' else 'CountVariants'
     if zygosity == 'het':
         zygosity = 'HeteroOnly'
-    elif zygosity=='hom':
-        zygosity=='HomoOnly'
-    elif zygosity=='hom_or_compoundhet':
+    elif zygosity == 'hom':
+        zygosity = 'HomoOnly'
+    elif zygosity == 'hom_or_compoundhet':
         if binarity == 'Binary':
             zygosity = 'HomOrCompoundHet'
         else:
@@ -137,7 +137,7 @@ def main():
 Run SORVA to answer the question: How often do individuals carry a mutation in a given gene?
 You can specify the type of variant, e.g. only count an individual if they are homozygous for a loss-of-function variant, after filtering out common variants with a minor allele frequency >= 5%, by specifying the options below.
 
-IMPORTANT NOTE: If intend to use the output to calculate statistics with, using statistics.py, use the following rules: If sequenced individuals have homozygous mutations in the gene, use the option --zygosity hom. If sequenced individuals have heterozygous mutations in the gene, use --zygosity both.''',
+IMPORTANT NOTE: If intend to use the output to calculate statistics with, using sorva-stats.py, use the following rules: If sequenced individuals have homozygous mutations in the gene, use the option --zygosity hom. If sequenced individuals have heterozygous mutations in the gene, use --zygosity both.''',
         epilog = '''SORVA version 1.0 (c)2015-2016 Aliz R. Rao. All rights reserved.''',
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--consequence', '-c', required=True, choices=['nonsyn', 'lof'],
