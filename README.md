@@ -6,19 +6,20 @@ The SORVA dataset contains calculations on the number of individuals who have a 
 
 ## Requirements
 
-* Python. Python version 3.5.1 has been tested.
+* Python. Python version 2.7.12 and 3.5.1 have been tested.
 * SciPy. Version 0.13.3 has been tested.
 
 ## Reference
 
 Aliz R Rao et al. Calculating the statistical significance of rare variants causal for Mendelian disorders
+doi: https://doi.org/10.1101/103218
 
 ## Installation
 
 After extracting the downloaded zip file, navigate into the directory and for options, run:
 
     python sorva.py --help
-    python statistics.py --help
+    python sorva-stats.py --help
 
 
 ## Usage
@@ -39,7 +40,7 @@ Just out of curiosity, how about anywhere within described protein domains in DM
 
 To calculate our P-value, the output of the first command becomes the -f parameter of the following command:
 
-    python statistics.py -f 0.0023961661341853034 --n1 10 --s1 3
+    python sorva-stats.py -f 0.0023961661341853034 --n1 10 --s1 3
     
 The resulting number is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
 
