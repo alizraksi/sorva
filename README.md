@@ -40,9 +40,9 @@ Just out of curiosity, how about anywhere within described protein domains in DM
 
 To calculate our P-value, the output of the first command becomes the -f parameter of the following command:
 
-    python sorva-stats.py -f 0.0023961661341853034 --n1 10 --s1 3
+    python sorva-stats.py -f 0.0023961661341853034 -n 10 -s 3 -c 1
     
-The resulting number is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
+The -c parameter = 1 indicates that all of the individuals were unrelated to each other. The resulting number is the nominal P-value, which we have to correct for multiple testing. A simple but conservative method is the Bonferroni correction, where we multiply the P-value by the number of genes we had sequenced:
 
     P-value = 1.63029317901e-06 * 24000 = 0.0391
 
@@ -89,44 +89,45 @@ Our results are statistically significant. This gene is highly suspicious of bei
 ### statistics.py
 
 ```Options:
-  -h, --help           show this help message and exit
-  -f F                 background frequency / fraction of individuals in
-                       population who have a mutation in the gene of interest
-                       (output of sorva.py)
-  --n1 N1              number of singletons (unrelated individuals) sequenced
-  --s1 S1              number of singletons who have a mutation in the gene of
-                       interest
-  --n1_2 N1_2          number of families where individuals share 1/2 of their
-                       genome (e.g. parent-child pair or full siblings)
-  --s1_2 S1_2          number of families sharing 1/2 of their genome who
-                       share mutations in the gene of interest
-  --n1_4 N1_4          number of families where individuals share 1/4 of their
-                       genome (e.g. grandparent-grandchild pair, aunt/uncle-
-                       niece/nephew pair, half siblings, two first cousins or
-                       three siblings)
-  --s1_4 S1_4          number of families sharing 1/4 of their genome who
-                       share mutations in the gene of interest
-  --n1_8 N1_8          number of families where individuals share 1/8 of their
-                       genome (e.g. second cousins)
-  --s1_8 S1_8          number of families sharing 1/8 of their genome who
-                       share mutations in the gene of interest
-  --n1_16 N1_16        number of families where individuals share 1/16 of
-                       their genome (e.g. third cousins)
-  --s1_16 S1_16        number of families sharing 1/16 of their genome who
-                       share mutations in the gene of interest
-  --n1_32 N1_32        number of families where individuals share 1/32 of
-                       their genome
-  --s1_32 S1_32        number of families sharing 1/32 of their genome who
-                       share mutations in the gene of interest
-  --n_custom N_CUSTOM  number of families where individuals share a fraction
-                       of their genome that is a custom value, specified by
-                       --custom
-  --s_custom S_CUSTOM  number of families sharing user-specified fraction of
-                       their genome who share mutations in the gene of
-                       interest
-  --custom CUSTOM      fraction of genome shared by family members sequenced
-  --verbose, -v        output additional information on how P-value was
-                       calculated
+  -h, --help            show this help message and exit
+  -f F                  background frequency / fraction of individuals in
+                        population who have a mutation in the gene of interest
+                        (output of sorva.py)
+  --num_families NUM_FAMILIES, -n NUM_FAMILIES
+                        The number of families sequenced, grouped by which
+                        families have identical family structures. E.g. if we
+                        sequenced 5 singletons and 3 sib pairs, this should be
+                        [5, 3]
+  --num_successes NUM_SUCCESSES, -s NUM_SUCCESSES
+                        The number of families sequenced who have a variant in
+                        the gene of interest (assumed to be shared IBD within
+                        the family), in the order that corresponds to the sets
+                        listed in the --num_families parameter. E.g. if we
+                        found that 3 singletons and 2 sib pairs had variants
+                        in a given gene, this would be [3, 2]
+  --f_coefficients F_COEFFICIENTS, -c F_COEFFICIENTS
+                        The coefficients for f. In case of an autosomal
+                        dominant (AD) disorder, this will usually be the
+                        coefficient of relationship. For autosomal recessive
+                        disorders, this will be 1 for unrelated individuals
+                        and 0.25 for sib pairs. For consanguineous pedigrees,
+                        see manuscript for method to calculate this
+                        coefficient. E.g. if we sequenced singletons and sib
+                        pairs and we're looking for het variants (disorder is
+                        AD), this would be [1, 0.25]
+  --denovo DENOVO       Out of the singletons who have a variant in the gene
+                        of interest, how many are de novo variants?
+  --gene GENE, -g GENE  gene name; req'd if denovo > 0. Use standard gene name
+                        from HGNC or specify Ensembl gene ID starting with
+                        ENSG.
+  --consequence {nonsyn,lof}
+                        variant consequence filtering threshold; req'd if
+                        denovo > 0. nonsyn = missense or more severe, also
+                        includes LOF. lof = potential loss-of-function (LOF),
+                        which includes stop loss gain, splice site mutation,
+                        and frameshift indel.
+  --verbose, -v         output additional information on how P-value was
+                        calculated
 ```
 
 ## Files
@@ -137,7 +138,7 @@ Our results are statistically significant. This gene is highly suspicious of bei
 	LICENSE.md	[Copyright and license information]
 	README.md	[This file]
 	sorva.py	[Python script to query data]
-	statistics.py	[Python script to calculate significance P-value]
+	sorvastats.py	[Python script to calculate significance P-value]
 ```
 ## Feedback
 
